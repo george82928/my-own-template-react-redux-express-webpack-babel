@@ -1,0 +1,148 @@
+{
+  "name": "pac-template",
+  "version": "1.0.0",
+  "description": "template app for print and copy team",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "eslint .",
+    "mocks": "mb start --configfile ./mock-server/stubs/imposters.ejs --loglevel=info --allowInjection",
+    "start": "node ./dist/server.js",
+    "build:client": "env-cmd -e common,production webpack --config ./config/webpack.client.config.js",
+    "build:server": "env-cmd -e common,production webpack --config ./config/webpack.server.config.js",
+    "build": "npm-run-all clean build:client build:server",
+    "test:unit": "mocha --inspect=0.0.0.0:6001 --compilers js:@babel/register --opts ./mocha.opts --exit",
+    "test:unit:coverage": "nyc -- mocha --compilers js:@babel/register --opts ./mocha.opts --exit",
+    "build:client:dev": "env-cmd -e common,development webpack --config ./config/webpack.client.config.js --watch",
+    "build:server:dev": "env-cmd -e common,development webpack --config ./config/webpack.server.config.js --watch",
+    "build:client:dev:once": "env-cmd -e common,development webpack --config ./config/webpack.client.config.js",
+    "build:server:dev:once": "env-cmd -e common,development webpack --config ./config/webpack.server.config.js",
+    "run:server:dev": "nodemon --inspect ./dist/server.js",
+    "start:front:dev": "webpack-dev-server --config ./config/webpack.client.config.js --open",
+    "start:watch": "npm-run-all -p start:front:dev build:server:dev",
+    "start:dev": "npm-run-all clean start:watch",
+    "babel:server:dev": "env-cmd -e common,development nodemon --exec babel-node ./src/server/index.js",
+    "dev": "npm-run-all -p start:front:dev babel:server:dev"
+  },
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "include": [
+      "src/**/*.js"
+    ],
+    "sourceMap": false,
+    "instrument": false,
+    "check-coverage": true,
+    "lines": 80,
+    "statements": 80,
+    "functions": 75,
+    "branches": 80,
+    "watermarks": {
+      "lines": [
+        80,
+        100
+      ],
+      "statements": [
+        80,
+        100
+      ],
+      "functions": [
+        75,
+        100
+      ],
+      "branches": [
+        80,
+        100
+      ]
+    },
+    "exclude": [
+      "src/server/db/**/*.js",
+      "src/**/*.spec.js"
+    ],
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "report-dir": "unit-test-output/coverage",
+    "all": true
+  },
+  "author": "George Zheng",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "cookie-parser": "^1.4.4",
+    "env-cmd": "^9.0.3",
+    "express": "^4.17.1",
+    "mocha": "^5.2.0",
+    "mocha-jenkins-reporter": "^0.4.1",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet-async": "0.1.x",
+    "react-html-parser": "^2.0.x",
+    "react-media": "1.8.x",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "4.3.x",
+    "react-sizeme": "2.5.x",
+    "react-slick": "^0.23.x",
+    "react-tooltip": "^3.9.2",
+    "rebass": "1.0.x",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "rimraf": "^2.6.3",
+    "sequelize": "^5.10.1",
+    "sequelize-cli": "^5.5.0",
+    "serve-favicon": "^2.5.0",
+    "sinon": "^7.3.2",
+    "styled-components": "^3.2.x",
+    "styled-tools": "0.2.x"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-react-jsx-source": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.5.5",
+    "babel-istanbul": "^0.12.2",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-dynamic-import-node": "^2.3.0",
+    "babel-plugin-inline-react-svg": "^1.1.0",
+    "babel-plugin-istanbul": "^5.1.4",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-styled-components": "^1.10.6",
+    "chai-enzyme": "^1.0.0-beta.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "faker": "4.1.x",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^11.11.0",
+    "lodash-webpack-plugin": "^0.11.5",
+    "mock-local-storage": "^1.0.5",
+    "mockery": "^2.1.0",
+    "mountebank": "^2.1.0",
+    "npm-run-all": "^4.1.5",
+    "nyc": "^14.1.1",
+    "redux-mock-store": "^1.5.3",
+    "sinon-express-mock": "1.3.1",
+    "styled-components-test-utils": "^1.0.2",
+    "uglifyjs-webpack-plugin": "^2.1.3",
+    "url-loader": "^2.0.1",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-node-externals": "^1.7.2",
+    "webpack-shell-plugin": "^0.5.0"
+  }
+}

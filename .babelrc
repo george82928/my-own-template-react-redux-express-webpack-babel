@@ -1,0 +1,24 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": "11",
+          "node": 6
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "lodash",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-react-jsx-source",
+    "babel-plugin-styled-components",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-syntax-dynamic-import",
+    "istanbul",
+    "dynamic-import-node"
+  ]
+}

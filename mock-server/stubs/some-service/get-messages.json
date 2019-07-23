@@ -1,0 +1,27 @@
+{
+  "predicates": [
+    {
+      "caseSensitive": true,
+      "equals": {
+        "path": "/messages",
+        "method": "GET"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "is": {
+        "statusCode": 200,
+        "headers": {
+          "X-Powered-By": "Express",
+          "X-Request-Id": "1dbb3b50-8078-11e7-94b9-677829bca9e0",
+          "Content-Type": "application/json; charset=utf-8",
+          "Connection": "keep-alive"
+        },
+        "body": {
+          "messages": ["some message"]
+        }
+      }
+    }
+  ]
+}

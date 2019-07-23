@@ -1,0 +1,7 @@
+**/node_modules
+unit-test-output
+.nyc_output
+dist
+mock-server
+*.spec.js
+src/server/db

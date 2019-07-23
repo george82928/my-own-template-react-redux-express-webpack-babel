@@ -1,0 +1,2 @@
+--colors
+--require src/test/helpers.js src/test/dom.js src/test/withMockery.js ignore-styles ./src/**/*.spec.js
