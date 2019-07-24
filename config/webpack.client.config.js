@@ -1,5 +1,6 @@
 require('@babel/polyfill');
 const path = require('path');
+
 const envName = process.env.NODE_ENV;
 const isProd = envName === 'production';
 const HtmlWebPackPlugin = require('html-webpack-plugin');
@@ -8,18 +9,18 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const config = {
   name: 'client',
   entry: {
-    main: ['@babel/polyfill', path.join(__dirname + '/../src/client/index.js')]
+    main: ['@babel/polyfill', path.join(`${__dirname}/../src/client/index.js`)],
   },
   output: {
-    path: path.join(__dirname + '/../dist/client'),
+    path: path.join(`${__dirname}/../dist/client`),
     publicPath: '/',
-    filename: '[name].js'
+    filename: '[name].js',
   },
   devServer: {
-    contentBase: path.join(__dirname + '/../dist/client'),
+    contentBase: path.join(`${__dirname}/../dist/client`),
     proxy: {
-      '/api': 'http://localhost:3000'
-    }
+      '/api': 'http://localhost:3000',
+    },
   },
   mode: envName,
   target: 'web',
@@ -29,7 +30,7 @@ const config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         // Loads the javacript into html template provided.
@@ -38,27 +39,27 @@ const config = {
         use: [
           {
             loader: 'html-loader',
-            options: { minimize: isProd }
-          }
-        ]
+            options: { minimize: isProd },
+          },
+        ],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
-      }
-    ]
+        use: ['file-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.join(__dirname + '/../src/client/html/index.html'),
+      template: path.join(`${__dirname}/../src/client/html/index.html`),
       filename: './index.html',
-      excludeChunks: ['server']
-    })
-  ]
+      excludeChunks: ['server'],
+    }),
+  ],
 };
 
 if (isProd) {

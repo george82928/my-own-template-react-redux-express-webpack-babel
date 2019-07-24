@@ -5,3 +5,4 @@ dist
 mock-server
 *.spec.js
 src/server/db
+src/test
