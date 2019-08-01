@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        pollScm('')
+        pollSCM('')
     }
 
     options {
