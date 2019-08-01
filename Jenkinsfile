@@ -13,13 +13,11 @@ pipeline {
     }
 
     stages {
-
         stage('Pull from github') {
             steps {
             checkout scm
             }
         }
-
         stage('Build') {
             steps {
                 sh "npm install"
