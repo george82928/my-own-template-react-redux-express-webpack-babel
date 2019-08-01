@@ -8,7 +8,6 @@ pipeline {
     options {
         skipDefaultCheckout()
         disableConcurrentBuilds()
-        ansiColor('xterm')
         timestamps()
         timeout(time: 1, unit: 'HOURS')
     }
