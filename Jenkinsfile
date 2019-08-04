@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    parameters {
+        string(defaultValue: 'master', description: 'branch', name: 'GIT_BRANCH')
+    }
     options {
         skipDefaultCheckout()
         disableConcurrentBuilds()
@@ -11,7 +13,8 @@ pipeline {
     stages {
         stage('Pull from github') {
             steps {
-            checkout scm
+                
+                checkout scm
             }
         }
         stage('Build') {
@@ -27,6 +30,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                echo "GIT BRANCH: *** -> ${params.GIT_BRANCH}"
                 echo "successful!"
             }
         }
