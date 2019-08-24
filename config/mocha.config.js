@@ -1,8 +1,6 @@
 /* eslint-disable */
 // import { COMPARE_LOCALSTORAGE_KEY } from './global.config';
 
-require('@ow/ow-test-utils/lib/jsDom');
-
 import localStorage from 'mock-local-storage';
 window.localStorage = global.localStorage;
 // window.localStorage.setItem(COMPARE_LOCALSTORAGE_KEY, '{}');
