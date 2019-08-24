@@ -66,3 +66,8 @@ deploy.zip
 dist
 tests-output/
 .history
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
